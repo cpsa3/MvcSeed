@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcSeed.Test", "MvcSeed.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcSeed.Repository", "MvcSeed.Repository\MvcSeed.Repository.csproj", "{5E13FAE6-9F91-4F00-8AC6-DDEEAB76EC1D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", "{2E0C66A0-8FC6-4720-BC88-457FF3D7559F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{53BA6921-EA31-492C-B789-22DEBC722CCC} = {2E0C66A0-8FC6-4720-BC88-457FF3D7559F}
 	EndGlobalSection
 EndGlobal

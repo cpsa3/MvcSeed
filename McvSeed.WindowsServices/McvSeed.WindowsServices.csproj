@@ -110,10 +110,6 @@
       <Project>{53ba6921-ea31-492c-b789-22debc722ccc}</Project>
       <Name>MvcSeed.Component</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MvcSeed.Repository\MvcSeed.Repository.csproj">
-      <Project>{5e13fae6-9f91-4f00-8ac6-ddeeab76ec1d}</Project>
-      <Name>MvcSeed.Repository</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ProjectInstaller.resx">

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MvcSeed.Component.Util;
+﻿using MvcSeed.Component.Util;
+using System;
 
 namespace MvcSeed.Component.WeiXin.Helpers
 {

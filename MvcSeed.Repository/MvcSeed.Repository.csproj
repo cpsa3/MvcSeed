@@ -54,6 +54,7 @@
     <Compile Include="Repo\BaseRepository.cs" />
     <Compile Include="Repo\QueryManage.cs" />
     <Compile Include="Repo\SqlMapperExtensions.cs" />
+    <Compile Include="Repo\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

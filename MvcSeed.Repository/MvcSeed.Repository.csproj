@@ -49,7 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DefaultUnitOfWork.cs" />
+    <Compile Include="Entity\Org.cs" />
     <Compile Include="Entity\User.cs" />
+    <Compile Include="Entity\WeixinAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repo\BaseRepository.cs" />
     <Compile Include="Repo\QueryManage.cs" />

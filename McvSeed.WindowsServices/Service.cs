@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
+﻿using MvcSeed.Component.Helpers;
+using Quartz;
+using Quartz.Impl;
 using System.ServiceProcess;
-using System.Text;
 
 namespace McvSeed.WindowsServices
 {
     public partial class Service : ServiceBase
     {
+        private IScheduler scheduler;
+
         public Service()
         {
             InitializeComponent();
@@ -18,10 +16,18 @@ namespace McvSeed.WindowsServices
 
         protected override void OnStart(string[] args)
         {
+
+            ISchedulerFactory schedulerFactory = new StdSchedulerFactory();
+            scheduler = schedulerFactory.GetScheduler();
+            scheduler.Start();
+
+            LogHelper.Error("Service.OnStart");
         }
 
         protected override void OnStop()
         {
+            scheduler.Shutdown();
+            LogHelper.Error("Service.OnStop");
         }
     }
 }

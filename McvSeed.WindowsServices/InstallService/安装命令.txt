@@ -1,0 +1,6 @@
+---安装---
+D:\windowServices\installUtil D:\windowServices\Neo.WindowServices.exe
+---卸载---
+D:\windowServices\installUtil /u D:\windowServices\Neo.WindowServices.exe
+---启动服务---
+net start Neo.WindowServices

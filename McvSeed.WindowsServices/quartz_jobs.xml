@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains job definitions in schema version 2.0 format -->
+
+<job-scheduling-data xmlns="http://quartznet.sourceforge.net/JobSchedulingData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0">
+
+  <processing-directives>
+    <overwrite-existing-data>true</overwrite-existing-data>
+  </processing-directives>
+
+  <schedule>
+    <job>
+      <name>DemoJob</name>
+      <group>DemoJobGroup</group>
+      <description>测试任务</description>
+      <!--命名空间，程序集-->
+      <job-type>McvSeed.WindowsServices.Jobs.DemoJob,McvSeed.WindowsServices</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+
+    <!--0/10 * * * * ? 10秒执行1次-->
+    <!--0 1/2 * * * ? 延迟1分钟后2分钟执行1次-->
+    <!--0 0 1 * * ? 每天凌晨0点-->
+    <trigger>
+      <cron>
+        <name>DemoJobTrigger</name>
+        <group>DemoJobTriggerGroup</group>
+        <job-name>DemoJob</job-name>
+        <job-group>DemoJobGroup</job-group>
+        <cron-expression>0/10 * * * * ?</cron-expression>
+      </cron>
+    </trigger>
+  </schedule>
+</job-scheduling-data>

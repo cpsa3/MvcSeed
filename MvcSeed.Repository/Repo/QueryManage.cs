@@ -2,8 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using MvcSeed.Component.Data;
 
-namespace MvcSeed.Component.Data.Query
+namespace MvcSeed.Repository.Repo
 {
     public sealed class QueryManage
     {

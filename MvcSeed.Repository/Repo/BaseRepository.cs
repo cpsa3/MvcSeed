@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 using Dapper;
 using Dapper.Contrib.Extensions;
+using MvcSeed.Component.Data;
+using MvcSeed.Component.Data.Repo;
 
-namespace MvcSeed.Component.Data.Repo
+namespace MvcSeed.Repository.Repo
 {
     public abstract class BaseRepository<T> : IRepository<T> where T : class
     {

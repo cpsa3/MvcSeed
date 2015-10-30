@@ -36,9 +36,6 @@
     <Reference Include="Commons">
       <HintPath>..\packages\Memcached.ClientLibrary.1.0\lib\net20\Commons.dll</HintPath>
     </Reference>
-    <Reference Include="Dapper">
-      <HintPath>..\packages\Dapper.1.42\lib\net40\Dapper.dll</HintPath>
-    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\Memcached.ClientLibrary.1.0\lib\net20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -47,10 +44,6 @@
     </Reference>
     <Reference Include="Memcached.ClientLibrary">
       <HintPath>..\packages\Memcached.ClientLibrary.1.0\lib\net20\Memcached.ClientLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data, Version=6.9.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MySql.Data.6.9.7\lib\net45\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -65,11 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\IUnitOfWork.cs" />
-    <Compile Include="Data\DefaultUnitOfWork.cs" />
-    <Compile Include="Data\Query\QueryManage.cs" />
-    <Compile Include="Data\Repo\BaseRepository.cs" />
     <Compile Include="Data\Repo\IRepository.cs" />
-    <Compile Include="Data\Repo\SqlMapperExtensions.cs" />
     <Compile Include="Helpers\HttpHelper.cs" />
     <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Helpers\LogHelper.cs" />

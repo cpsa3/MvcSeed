@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using MvcSeed.Component.Data;
 using MySql.Data.MySqlClient;
 
-namespace MvcSeed.Component.Data
+namespace MvcSeed.Repository
 {
     public class DefaultUnitOfWork : IUnitOfWork
     {

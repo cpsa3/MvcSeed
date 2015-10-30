@@ -10,6 +10,7 @@ using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Mvc;
 using MvcSeed.Component.Data;
 using MvcSeed.Component.Util;
+using MvcSeed.Repository;
 
 namespace MvcSeed.Business.Util
 {

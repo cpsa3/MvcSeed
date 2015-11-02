@@ -64,6 +64,10 @@
       <Project>{3d6c6847-7924-478b-97ff-142aa57c53fc}</Project>
       <Name>MvcSeed.Business</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MvcSeed.Component\MvcSeed.Component.csproj">
+      <Project>{53ba6921-ea31-492c-b789-22debc722ccc}</Project>
+      <Name>MvcSeed.Component</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

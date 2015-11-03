@@ -11,14 +11,20 @@ namespace MvcSeed.Test
         public void BCryptTest()
         {
             const string password = "PASSWORD";
-            const int workFactor = 12;
+            const int workFactor = 14;
 
             var start = DateTime.UtcNow;
             var hashed = HashHelper.BCryptPassword(password, workFactor);
             var end = DateTime.UtcNow;
-            var hashed2 = HashHelper.BCryptPassword(password, workFactor);
-
             var elapsedTime = end - start;
+
+            var s = DateTime.UtcNow;
+            var md5 = HashHelper.Md5("wangjiebo");
+            var md52 = HashHelper.Md5Short("wangjiebo");
+            var e = DateTime.UtcNow;
+            var t = e - s;
+
+            var hashed2 = HashHelper.BCryptPassword(password, workFactor);
 
             Assert.IsTrue(HashHelper.BCryptVerify("PASSWORD", hashed));
             Assert.IsFalse(HashHelper.BCryptVerify("PASSWORd", hashed));

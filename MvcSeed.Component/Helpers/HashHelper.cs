@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using MvcSeed.Component.Security;
 
 namespace MvcSeed.Component.Helpers
 {
@@ -48,23 +49,51 @@ namespace MvcSeed.Component.Helpers
         /// <returns>返回32位加密结果</returns>
         public static string Md5(string input)
         {
-            var md5 = System.Security.Cryptography.MD5.Create();
-
-            byte[] data = md5.ComputeHash(Encoding.UTF8.GetBytes(input));
-
-            // Create a new Stringbuilder to collect the bytes
-            // and create a string.
-            var sb = new StringBuilder();
-
-            // Loop through each byte of the hashed data 
-            // and format each one as a hexadecimal string.
-            foreach (byte t in data)
+            using (var md5 = System.Security.Cryptography.MD5.Create())
             {
-                sb.Append(t.ToString("x2"));
-            }
+                byte[] data = md5.ComputeHash(Encoding.UTF8.GetBytes(input));
 
-            // Return the hexadecimal string.
-            return sb.ToString();
+                // Create a new Stringbuilder to collect the bytes
+                // and create a string.
+                var sb = new StringBuilder();
+
+                // Loop through each byte of the hashed data 
+                // and format each one as a hexadecimal string.
+                foreach (byte t in data)
+                {
+                    sb.Append(t.ToString("x2"));
+                }
+
+                // Return the hexadecimal string.
+                return sb.ToString();
+            }
+        }
+
+        public static string SHA1(string input)
+        {
+            using (var sha1 = System.Security.Cryptography.SHA1.Create())
+            {
+                byte[] data = sha1.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+                var sb = new StringBuilder();
+
+                foreach (byte t in data)
+                {
+                    sb.Append(t.ToString("x2"));
+                }
+
+                return sb.ToString();
+            }
+        }
+
+        public static string PBKDF2(string input)
+        {
+            return PBKDF2Hash.CreateHash(input);
+        }
+
+        public static bool PBKDF2Verify(string password, string hashed)
+        {
+            return PBKDF2Hash.ValidatePassword(password, hashed);
         }
     }
 }

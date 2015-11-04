@@ -95,5 +95,32 @@ namespace MvcSeed.Component.Helpers
         {
             return PBKDF2Hash.ValidatePassword(password, hashed);
         }
+
+        public static string RSAEncrypt(string input, string publickey)
+        {
+            var rsaToEncrypt = new RSACryptoServiceProvider();
+            rsaToEncrypt.FromXmlString(publickey);
+            byte[] byEncrypted = rsaToEncrypt.Encrypt(Encoding.UTF8.GetBytes(input), false);
+
+            var sb = new StringBuilder();
+
+            foreach (var t in byEncrypted)
+            {
+                sb.Append(t.ToString("x"));
+            }
+
+            return sb.ToString();
+        }
+
+        public static string RSADecrypt(byte[] byEncrypted, string privatekey)
+        {
+            var rsaToDecrypt = new RSACryptoServiceProvider();
+            rsaToDecrypt.FromXmlString(privatekey);
+
+            byte[] byDecrypted = rsaToDecrypt.Decrypt(byEncrypted, false);
+            string strDecryptedPwd = Encoding.UTF8.GetString(byDecrypted);
+
+            return strDecryptedPwd;
+        }
     }
 }

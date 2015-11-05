@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,37 +9,15 @@ namespace MvcSeed.Component.Helpers
 {
     public class StringHelper
     {
-        public static byte[] HexStringToBytes(string hex)
+
+        public static string BytesToHexString(byte[] data)
         {
-            if (hex.Length == 0)
-            {
-                return new byte[] { 0 };
-            }
-
-            if (hex.Length % 2 == 1)
-            {
-                hex = "0" + hex;
-            }
-
-            var result = new byte[hex.Length / 2];
-
-            for (var i = 0; i < hex.Length / 2; i++)
-            {
-                result[i] = byte.Parse(hex.Substring(2 * i, 2), System.Globalization.NumberStyles.AllowHexSpecifier);
-            }
-
-            return result;
+            return BitConverter.ToString(data).Replace("-", "").ToLower();
         }
 
-        public static string BytesToHexString(byte[] input)
+        public static byte[] HexStringToBytes(string hexString)
         {
-            var hexString = new StringBuilder(64);
-
-            foreach (byte t in input)
-            {
-                hexString.Append(String.Format("{0:X2}", t));
-            }
-            return hexString.ToString();
+            return SoapHexBinary.Parse(hexString).Value;
         }
 
         public static string BytesToDecString(byte[] input)

@@ -55,7 +55,7 @@ namespace MvcSeed.Component.Helpers
                 byte[] data = md5.ComputeHash(Encoding.UTF8.GetBytes(input));
 
                 // Return the hexadecimal string.
-                return BitConverter.ToString(data).Replace("-", "").ToLower();
+                return StringHelper.BytesToHexString(data);
             }
         }
 
@@ -65,7 +65,7 @@ namespace MvcSeed.Component.Helpers
             {
                 byte[] data = sha1.ComputeHash(Encoding.UTF8.GetBytes(input));
 
-                return BitConverter.ToString(data).Replace("-", "").ToLower();
+                return StringHelper.BytesToHexString(data);
             }
         }
 
@@ -85,13 +85,13 @@ namespace MvcSeed.Component.Helpers
             rsaToEncrypt.FromXmlString(publickey);
             byte[] byEncrypted = rsaToEncrypt.Encrypt(Encoding.UTF8.GetBytes(input), false);
 
-            return BitConverter.ToString(byEncrypted).Replace("-", "").ToLower();
+            return StringHelper.BytesToHexString(byEncrypted);
         }
 
         public static string RSADecrypt(string byEncryptedStr, string privatekey)
         {
-            var data = SoapHexBinary.Parse(byEncryptedStr);
-            return RSADecrypt(data.Value, privatekey);
+            var data = StringHelper.HexStringToBytes(byEncryptedStr);
+            return RSADecrypt(data, privatekey);
         }
 
         public static string RSADecrypt(byte[] byEncrypted, string privatekey)
@@ -103,16 +103,6 @@ namespace MvcSeed.Component.Helpers
             string strDecryptedPwd = Encoding.UTF8.GetString(byDecrypted);
 
             return strDecryptedPwd;
-        }
-
-        public static string BytesToHexString(byte[] data)
-        {
-            return BitConverter.ToString(data).Replace("-", "").ToLower();
-        }
-
-        public static byte[] HexStringToBytes(string hexString)
-        {
-            return SoapHexBinary.Parse(hexString).Value;
         }
     }
 }

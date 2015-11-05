@@ -30,24 +30,14 @@ namespace McvSeed.Web.Controllers
             DiMySession["PrivateKey"] = privateKey;
 
             const string strPassword = "123456";
-
-            var str1 = HashHelper.RSAEncrypt(strPassword, publickey);
-
-            var rsaToEncrypt = new RSACryptoServiceProvider();
-            rsaToEncrypt.FromXmlString(publickey);
-            byte[] byEncrypted = rsaToEncrypt.Encrypt(Encoding.UTF8.GetBytes(strPassword), false);
-            var x = BitConverter.ToString(byEncrypted).Replace("-", "").ToLower();
-
-            var data = SoapHexBinary.Parse(x);
-
-            var str = HashHelper.RSADecrypt(x, privateKey);
-
+            var encrypt = HashHelper.RSAEncrypt(strPassword, publickey);
+            var decrypt = HashHelper.RSADecrypt(encrypt, privateKey);
 
 
             //把公钥适当转换
             var parameter = rsa.ExportParameters(true);
-            var strPublicKeyExponent = HashHelper.BytesToHexString(parameter.Exponent);
-            var strPublicKeyModulus = HashHelper.BytesToHexString(parameter.Modulus);
+            var strPublicKeyExponent = StringHelper.BytesToHexString(parameter.Exponent);
+            var strPublicKeyModulus = StringHelper.BytesToHexString(parameter.Modulus);
 
             ViewBag.strPublicKeyExponent = strPublicKeyExponent;
             ViewBag.strPublicKeyModulus = strPublicKeyModulus;

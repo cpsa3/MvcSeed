@@ -140,7 +140,7 @@ function biFromNumber(i)
 	var j = 0;
 	while (i > 0) {
 		result.digits[j++] = i & maxDigitVal;
-		i >>= biRadixBits;
+		i = Math.floor(i / biRadix);
 	}
 	return result;
 }
@@ -274,25 +274,6 @@ function biFromString(s, radix)
 	return result;
 }
 
-function biToBytes(x)
-	// Returns a string containing raw bytes.
-{
-	var result = "";
-	for (var i = biHighIndex(x); i > -1; --i) {
-		result += digitToBytes(x.digits[i]);
-	}
-	return result;
-}
-
-function digitToBytes(n)
-	// Convert two-byte digit to string containing both bytes.
-{
-	var c1 = String.fromCharCode(n & 0xff);
-	n >>>= 8;
-	var c2 = String.fromCharCode(n & 0xff);
-	return c2 + c1;
-}
-
 function biDump(b)
 {
 	return (b.isNeg ? "-" : "") + b.digits.join(" ");
@@ -313,7 +294,7 @@ function biAdd(x, y)
 		var n;
 		for (var i = 0; i < x.digits.length; ++i) {
 			n = x.digits[i] + y.digits[i] + c;
-			result.digits[i] = n & 0xffff;
+			result.digits[i] = n % biRadix;
 			c = Number(n >= biRadix);
 		}
 		result.isNeg = x.isNeg;
@@ -334,7 +315,7 @@ function biSubtract(x, y)
 		c = 0;
 		for (var i = 0; i < x.digits.length; ++i) {
 			n = x.digits[i] - y.digits[i] + c;
-			result.digits[i] = n & 0xffff;
+			result.digits[i] = n % biRadix;
 			// Stupid non-conforming modulus operation.
 			if (result.digits[i] < 0) result.digits[i] += biRadix;
 			c = 0 - Number(n < 0);
@@ -344,7 +325,7 @@ function biSubtract(x, y)
 			c = 0;
 			for (var i = 0; i < x.digits.length; ++i) {
 				n = 0 - result.digits[i] + c;
-				result.digits[i] = n & 0xffff;
+				result.digits[i] = n % biRadix;
 				// Stupid non-conforming modulus operation.
 				if (result.digits[i] < 0) result.digits[i] += biRadix;
 				c = 0 - Number(n < 0);
@@ -394,6 +375,7 @@ function biMultiply(x, y)
 			uv = result.digits[k] + x.digits[j] * y.digits[i] + c;
 			result.digits[k] = uv & maxDigitVal;
 			c = uv >>> biRadixBits;
+			//c = Math.floor(uv / biRadix);
 		}
 		result.digits[i + n + 1] = c;
 	}
@@ -413,6 +395,7 @@ function biMultiplyDigit(x, y)
 		uv = result.digits[j] + x.digits[j] * y + c;
 		result.digits[j] = uv & maxDigitVal;
 		c = uv >>> biRadixBits;
+		//c = Math.floor(uv / biRadix);
 	}
 	result.digits[1 + n] = c;
 	return result;

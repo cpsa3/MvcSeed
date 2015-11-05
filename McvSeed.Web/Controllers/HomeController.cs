@@ -23,7 +23,7 @@ namespace McvSeed.Web.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            var rsa = new RSACryptoServiceProvider();
+            var rsa = new RSACryptoServiceProvider(1024);
             string publickey = rsa.ToXmlString(false);
             var privateKey = rsa.ToXmlString(true);
             //将私钥存Session中

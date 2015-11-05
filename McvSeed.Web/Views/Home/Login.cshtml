@@ -14,10 +14,7 @@
         var pwd = document.getElementById('password').value;
         var pwdRSA = encryptedString(key, pwd);
         document.getElementById('password').value = pwdRSA;
-
-        var p = decryptedString(key, pwdRSA);
-        alert(key);
-        return false;
+        return;
     }
 </script>
 

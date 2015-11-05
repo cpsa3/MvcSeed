@@ -104,5 +104,15 @@ namespace MvcSeed.Component.Helpers
 
             return strDecryptedPwd;
         }
+
+        public static string BytesToHexString(byte[] data)
+        {
+            return BitConverter.ToString(data).Replace("-", "").ToLower();
+        }
+
+        public static byte[] HexStringToBytes(string hexString)
+        {
+            return SoapHexBinary.Parse(hexString).Value;
+        }
     }
 }

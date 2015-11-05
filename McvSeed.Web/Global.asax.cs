@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using MvcSeed.Business.Util;
 
 namespace McvSeed.Web
 {
@@ -19,6 +20,11 @@ namespace McvSeed.Web
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            Bootstrapper.Instance.Initialise();
+
+            //读取日志  如果使用log4net,应用程序一开始的时候，都要进行初始化配置
+            log4net.Config.XmlConfigurator.Configure(new System.IO.FileInfo(Server.MapPath("~/log4net.config")));
         }
     }
 }

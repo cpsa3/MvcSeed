@@ -6,6 +6,7 @@ using MvcSeed.Business.Models;
 
 namespace McvSeed.Web.Security
 {
+    [Serializable]
     public class CurrentUser : ICurrentUser
     {
         public long UserId { get; set; }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,19 +54,8 @@ namespace MvcSeed.Component.Helpers
             {
                 byte[] data = md5.ComputeHash(Encoding.UTF8.GetBytes(input));
 
-                // Create a new Stringbuilder to collect the bytes
-                // and create a string.
-                var sb = new StringBuilder();
-
-                // Loop through each byte of the hashed data 
-                // and format each one as a hexadecimal string.
-                foreach (byte t in data)
-                {
-                    sb.Append(t.ToString("x2"));
-                }
-
                 // Return the hexadecimal string.
-                return sb.ToString();
+                return BitConverter.ToString(data).Replace("-", "").ToLower();
             }
         }
 
@@ -75,14 +65,7 @@ namespace MvcSeed.Component.Helpers
             {
                 byte[] data = sha1.ComputeHash(Encoding.UTF8.GetBytes(input));
 
-                var sb = new StringBuilder();
-
-                foreach (byte t in data)
-                {
-                    sb.Append(t.ToString("x2"));
-                }
-
-                return sb.ToString();
+                return BitConverter.ToString(data).Replace("-", "").ToLower();
             }
         }
 
@@ -102,14 +85,13 @@ namespace MvcSeed.Component.Helpers
             rsaToEncrypt.FromXmlString(publickey);
             byte[] byEncrypted = rsaToEncrypt.Encrypt(Encoding.UTF8.GetBytes(input), false);
 
-            var sb = new StringBuilder();
+            return BitConverter.ToString(byEncrypted).Replace("-", "").ToLower();
+        }
 
-            foreach (var t in byEncrypted)
-            {
-                sb.Append(t.ToString("x"));
-            }
-
-            return sb.ToString();
+        public static string RSADecrypt(string byEncryptedStr, string privatekey)
+        {
+            var data = SoapHexBinary.Parse(byEncryptedStr);
+            return RSADecrypt(data.Value, privatekey);
         }
 
         public static string RSADecrypt(byte[] byEncrypted, string privatekey)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MvcSeed.Component.Helpers;
 using MvcSeed.Component.Security;
@@ -33,6 +34,20 @@ namespace MvcSeed.Test
             Assert.IsTrue(HashHelper.PBKDF2Verify("PASSWORD", pbkdf2Hashed));
             Assert.IsFalse(HashHelper.PBKDF2Verify("PASSWORd", pbkdf2Hashed));
             Assert.AreEqual(bcryptHashed.Length, 60);
+        }
+
+        [TestMethod]
+        public void RSATest()
+        {
+            var rsa = new RSACryptoServiceProvider(1024);
+            var publickey = rsa.ToXmlString(false);
+            var privateKey = rsa.ToXmlString(true);
+
+            const string strPassword = "123456";
+            var encrypt = HashHelper.RSAEncrypt(strPassword, publickey);
+            var decrypt = HashHelper.RSADecrypt(encrypt, privateKey);
+
+            Assert.AreEqual(strPassword, decrypt);
         }
     }
 }

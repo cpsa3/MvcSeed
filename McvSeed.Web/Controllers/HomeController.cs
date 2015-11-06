@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
-using System.Security.AccessControl;
-using System.Security.Cryptography;
-using System.Text;
-using System.Web;
-using System.Web.Mvc;
-using McvSeed.Web.Models;
+﻿using McvSeed.Web.Models;
 using McvSeed.Web.Security;
 using MvcSeed.Component.Helpers;
+using System.Security.Cryptography;
+using System.Web.Mvc;
 
 namespace McvSeed.Web.Controllers
 {
@@ -24,15 +16,10 @@ namespace McvSeed.Web.Controllers
         public ActionResult Login()
         {
             var rsa = new RSACryptoServiceProvider(1024);
-            string publickey = rsa.ToXmlString(false);
             var privateKey = rsa.ToXmlString(true);
+
             //将私钥存Session中
             DiMySession["PrivateKey"] = privateKey;
-
-            const string strPassword = "123456";
-            var encrypt = HashHelper.RSAEncrypt(strPassword, publickey);
-            var decrypt = HashHelper.RSADecrypt(encrypt, privateKey);
-
 
             //把公钥适当转换
             var parameter = rsa.ExportParameters(true);

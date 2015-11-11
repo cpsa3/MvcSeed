@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcSeed.Component", "MvcSee
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcSeed.Business", "MvcSeed.Business\MvcSeed.Business.csproj", "{3D6C6847-7924-478B-97FF-142AA57C53FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcSeed.Web", "McvSeed.Web\MvcSeed.Web.csproj", "{5F5241F0-AF02-4BD9-BE00-4F52883D0F66}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcSeed.Web", "MvcSeed.Web\MvcSeed.Web.csproj", "{5F5241F0-AF02-4BD9-BE00-4F52883D0F66}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcSeed.Test", "MvcSeed.Test\MvcSeed.Test.csproj", "{BDB43FC1-AA74-4077-B8FB-BD7F9F55A91B}"
 EndProject
@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcSeed.Component.WeiXin", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{9D50888B-3ABD-494F-9293-4591798535BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcSeed.WindowsServices", "McvSeed.WindowsServices\MvcSeed.WindowsServices.csproj", "{4C3DACBC-D43D-43EA-8C5C-C37FB071A49E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcSeed.WindowsServices", "MvcSeed.WindowsServices\MvcSeed.WindowsServices.csproj", "{4C3DACBC-D43D-43EA-8C5C-C37FB071A49E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{A1E40C74-B3D2-451E-9A18-79BFF66DFC85}"
 EndProject

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MvcSeed.Business.Util;
-using MvcSeed.Component.Data;
-using MvcSeed.Component.Helpers;
+﻿using MvcSeed.Component.Helpers;
 using Quartz;
-using Microsoft.Practices.Unity;
+using System;
 
-namespace McvSeed.WindowsServices.Jobs
+namespace MvcSeed.WindowsServices.Jobs
 {
     public class DemoJob : IJob
     {

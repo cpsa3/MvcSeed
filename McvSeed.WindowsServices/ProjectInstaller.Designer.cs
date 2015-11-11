@@ -1,4 +1,4 @@
-﻿namespace McvSeed.WindowsServices
+﻿namespace MvcSeed.WindowsServices
 {
     partial class ProjectInstaller
     {

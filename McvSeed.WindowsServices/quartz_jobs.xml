@@ -14,7 +14,7 @@
       <group>DemoJobGroup</group>
       <description>测试任务</description>
       <!--命名空间，程序集-->
-      <job-type>McvSeed.WindowsServices.Jobs.DemoJob,McvSeed.WindowsServices</job-type>
+      <job-type>MvcSeed.WindowsServices.Jobs.DemoJob,MvcSeed.WindowsServices</job-type>
       <durable>true</durable>
       <recover>false</recover>
     </job>

@@ -3,7 +3,7 @@ using Quartz;
 using Quartz.Impl;
 using System.ServiceProcess;
 
-namespace McvSeed.WindowsServices
+namespace MvcSeed.WindowsServices
 {
     public partial class Service : ServiceBase
     {

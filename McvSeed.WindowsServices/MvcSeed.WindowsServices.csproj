@@ -7,8 +7,8 @@
     <ProjectGuid>{4C3DACBC-D43D-43EA-8C5C-C37FB071A49E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>McvSeed.WindowsServices</RootNamespace>
-    <AssemblyName>McvSeed.WindowsServices</AssemblyName>
+    <RootNamespace>MvcSeed.WindowsServices</RootNamespace>
+    <AssemblyName>MvcSeed.WindowsServices</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

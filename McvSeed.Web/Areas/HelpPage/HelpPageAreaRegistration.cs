@@ -1,7 +1,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace McvSeed.Web.Areas.HelpPage
+namespace MvcSeed.Web.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {

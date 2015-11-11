@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("McvSeed.Web")]
+[assembly: AssemblyTitle("MvcSeed.Web")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CHINA")]
-[assembly: AssemblyProduct("McvSeed.Web")]
+[assembly: AssemblyProduct("MvcSeed.Web")]
 [assembly: AssemblyCopyright("Copyright © CHINA 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

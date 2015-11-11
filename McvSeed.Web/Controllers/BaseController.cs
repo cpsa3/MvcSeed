@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using McvSeed.Web.Security;
+using MvcSeed.Web.Security;
 using Microsoft.Practices.Unity;
 using MvcSeed.Component.Data;
 using MvcSeed.Component.Util;
 
-namespace McvSeed.Web.Controllers
+namespace MvcSeed.Web.Controllers
 {
     public class BaseController : Controller
     {

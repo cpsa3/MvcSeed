@@ -1,4 +1,4 @@
-namespace McvSeed.Web.Areas.HelpPage
+namespace MvcSeed.Web.Areas.HelpPage
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response

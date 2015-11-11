@@ -2,7 +2,7 @@
 using MvcSeed.Business.Util;
 using MvcSeed.Component.Util;
 
-namespace McvSeed.Web.Security
+namespace MvcSeed.Web.Security
 {
     public class CurrentContext
     {

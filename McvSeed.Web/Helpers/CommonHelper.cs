@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web;
-using McvSeed.Web.Security;
+using MvcSeed.Web.Security;
 using MvcSeed.Business.Util;
 using MvcSeed.Component.Util;
 using Microsoft.Practices.Unity;
 using MvcSeed.Component.WeiXin.Helpers;
 using MvcSeed.Repository.Entity;
 
-namespace McvSeed.Web.Helpers
+namespace MvcSeed.Web.Helpers
 {
     public class CommonHelper
     {

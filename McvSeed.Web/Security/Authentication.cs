@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace McvSeed.Web.Security
+namespace MvcSeed.Web.Security
 {
     public class Authentication : FilterAttribute, IAuthorizationFilter
     {

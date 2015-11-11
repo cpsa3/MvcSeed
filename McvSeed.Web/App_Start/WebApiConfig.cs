@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace McvSeed.Web
+namespace MvcSeed.Web
 {
     public static class WebApiConfig
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace McvSeed.Web.Areas.HelpPage
+namespace MvcSeed.Web.Areas.HelpPage
 {
     /// <summary>
     /// This represents an image sample on the help page. There's a display template named ImageSample associated with this class.

@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using McvSeed.Web.Helpers;
+﻿using Microsoft.Practices.Unity;
 using MvcSeed.Business.Util;
 using MvcSeed.Component.Data;
 using MvcSeed.Component.WeiXin.Helpers;
-using Microsoft.Practices.Unity;
-using MvcSeed.Repository.Entity;
 using MvcSeed.Repository.Repo;
+using MvcSeed.Web.Helpers;
+using System.Web.Mvc;
 
-namespace McvSeed.Web.Security
+namespace MvcSeed.Web.Security
 {
     public class WeiXinAuthFilter : FilterAttribute, IAuthorizationFilter
     {

@@ -7,9 +7,9 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Description;
-using McvSeed.Web.Areas.HelpPage.Models;
+using MvcSeed.Web.Areas.HelpPage.Models;
 
-namespace McvSeed.Web.Areas.HelpPage
+namespace MvcSeed.Web.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

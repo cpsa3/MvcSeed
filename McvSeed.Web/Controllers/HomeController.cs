@@ -1,10 +1,10 @@
-﻿using McvSeed.Web.Models;
-using McvSeed.Web.Security;
+﻿using MvcSeed.Web.Models;
+using MvcSeed.Web.Security;
 using MvcSeed.Component.Helpers;
 using System.Security.Cryptography;
 using System.Web.Mvc;
 
-namespace McvSeed.Web.Controllers
+namespace MvcSeed.Web.Controllers
 {
     public class HomeController : BaseController
     {

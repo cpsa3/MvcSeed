@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using MvcSeed.Business.Models;
 
-namespace McvSeed.Web.Security
+namespace MvcSeed.Web.Security
 {
     [Serializable]
     public class CurrentUser : ICurrentUser

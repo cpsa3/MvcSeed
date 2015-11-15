@@ -1,4 +1,5 @@
-﻿using Senparc.Weixin.MP.AdvancedAPIs;
+﻿using Senparc.Weixin.MP;
+using Senparc.Weixin.MP.AdvancedAPIs;
 using Senparc.Weixin.MP.CommonAPIs;
 using Senparc.Weixin.MP.HttpUtility;
 using System.Collections.Generic;
@@ -86,15 +87,27 @@ namespace MvcSeed.Component.WeiXin.Helpers
 
         public static SendTemplateMessageResult SendTemplateMessage(string accessToken, string openId, string templateId, string url, object data)
         {
-            const string urlFormat = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={0}";
-            var msgData = new TempleteModel()
+            try
             {
-                touser = openId,
-                template_id = templateId,
-                url = url,
-                data = data
-            };
-            return CommonJsonSend.Send<SendTemplateMessageResult>(accessToken, urlFormat, msgData);
+                const string urlFormat = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={0}";
+                var msgData = new TempleteModel
+                {
+                    touser = openId,
+                    template_id = templateId,
+                    url = url,
+                    data = data
+                };
+                return CommonJsonSend.Send<SendTemplateMessageResult>(accessToken, urlFormat, msgData);
+            }
+            catch (ErrorJsonResultException ex)
+            {
+                return new SendTemplateMessageResult
+                {
+                    errcode = ex.JsonResult.errcode,
+                    errmsg = ex.JsonResult.errmsg,
+                    P2PData = ex.JsonResult.P2PData
+                };
+            }
         }
     }
 

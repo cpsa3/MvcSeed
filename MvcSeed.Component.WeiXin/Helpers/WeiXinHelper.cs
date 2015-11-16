@@ -1,4 +1,5 @@
-﻿using Senparc.Weixin.MP;
+﻿using System.Linq;
+using Senparc.Weixin.MP;
 using Senparc.Weixin.MP.AdvancedAPIs;
 using Senparc.Weixin.MP.CommonAPIs;
 using Senparc.Weixin.MP.HttpUtility;
@@ -74,15 +75,8 @@ namespace MvcSeed.Component.WeiXin.Helpers
         public static List<WeixinUserResult> GetFollowers(string accessToken)
         {
             var openids = GetFollowersIds(accessToken);
-            var users = new List<WeixinUserResult>();
 
-            foreach (var openid in openids)
-            {
-                var user = GetWeixinUser(accessToken, openid);
-                users.Add(user);
-            }
-
-            return users;
+            return openids.Select(openid => GetWeixinUser(accessToken, openid)).ToList();
         }
 
         public static SendTemplateMessageResult SendTemplateMessage(string accessToken, string openId, string templateId, string url, object data)

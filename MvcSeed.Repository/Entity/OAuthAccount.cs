@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MvcSeed.Repository.Entity
 {
+    /// <summary>
+    /// 第三方授权登录
+    /// </summary>
     public class OAuthAccount
     {
         public long Id { get; set; }

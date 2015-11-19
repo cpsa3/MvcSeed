@@ -156,6 +156,10 @@
     <Content Include="Scripts\libs\rsa\Barrett.js" />
     <Content Include="Scripts\libs\rsa\BigInt.js" />
     <Content Include="Scripts\libs\rsa\RSA.js" />
+    <Content Include="Scripts\libs\underscore-1.7.0\underscore-min.js" />
+    <Content Include="Scripts\libs\underscore-1.7.0\underscore.js" />
+    <Content Include="Scripts\libs\vue\vue-resource.min.js" />
+    <Content Include="Scripts\libs\vue\vue.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

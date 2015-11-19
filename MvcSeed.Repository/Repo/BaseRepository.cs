@@ -11,7 +11,7 @@ using MvcSeed.Component.Data.Repo;
 
 namespace MvcSeed.Repository.Repo
 {
-    public abstract class BaseRepository<T> : IRepository<T> where T : class
+    public class BaseRepository<T> : IRepository<T> where T : class
     {
         public IUnitOfWork UnitOfWork { get; protected set; }
 

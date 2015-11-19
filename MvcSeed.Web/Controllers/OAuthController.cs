@@ -1,11 +1,17 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
+using MvcSeed.Business.Util;
 using MvcSeed.Component.Github.Entities;
 using MvcSeed.Component.Github.Helpers;
 using MvcSeed.Component.Helpers;
 using MvcSeed.Repository.Entity;
+using MvcSeed.Repository.Repo;
 using MvcSeed.Web.Helpers;
 using MvcSeed.Web.Models;
 using System.Web.Mvc;
+using MvcSeed.Web.Security;
 
 namespace MvcSeed.Web.Controllers
 {
@@ -15,28 +21,82 @@ namespace MvcSeed.Web.Controllers
         /// 第三方授权回调
         /// </summary>
         /// <returns></returns>
-        public ActionResult AuthorizeCallback(AuthorizeDto dto)
+        public async Task<ActionResult> AuthorizeCallback(AuthorizeDto dto)
         {
             //TODO 校验state,防止跨站请求伪造攻击
 
-            var accessToken = GithubHelper.GetAccessToken(new AccessTokenRequest
+            var accessToken = await GithubHelper.GetAccessTokenAsync(new AccessTokenRequest
             {
                 client_id = CommonHelper.ClientId,
                 client_secret = CommonHelper.ClientSecret,
                 code = dto.code
             });
 
-            var githubUser = GithubHelper.GetGithubUser(accessToken);
+            var githubUser = await GithubHelper.GetGithubUserAsync(accessToken);
 
-            //TODO 根据githubUser.id获取userId，若首次访问，则新建OAuthAccount记录和User记录
+            var user = GetOAuthUser(githubUser);
 
+            if (user != null)
+            {
+                var currentUser = CurrentContext.GetCurrentUser();
+                currentUser.UserId = user.Id;
+                currentUser.UserName = user.UserName;
+                CurrentContext.SetUser(currentUser);
 
-            return Json(githubUser, JsonRequestBehavior.AllowGet);
+                return RedirectToAction("Index", "Home");
+            }
+
+            return Content("用户已经被禁用，请联系管理员");
+
         }
 
-        private void GetOAuthUser(long oauthId)
+        /// <summary>
+        /// 根据githubUser.id获取userId，若首次访问，则新建OAuthAccount记录和User记录
+        /// </summary>
+        /// <param name="githubUser"></param>
+        /// <returns></returns>
+        private User GetOAuthUser(GithubUserInfoResult githubUser)
         {
+            using (UnitOfWork)
+            {
+                User user = null;
+                var queryManage = new QueryManage(UnitOfWork);
+                var commonQuery = new CommonQuery(queryManage);
+                var userRepo = new UserRepository(UnitOfWork);
+                var oauthAccountRepo = new BaseRepository<OAuthAccount>(UnitOfWork);
 
+                const string query = @"SELECT *
+                                        FROM oauthaccount
+                                        WHERE OAuthCode = @OAuthCode
+	                                        AND Source = @Source";
+                var oauthAccount = queryManage.GetList<OAuthAccount>(query, new { OAuthCode = githubUser.id, Source = OAuthSource.Github })
+                    .FirstOrDefault();
+
+                if (oauthAccount == null)
+                {
+                    user = new User
+                    {
+                        UserName = githubUser.login,
+                        Enable = true,
+                        CreatedTime = DateTime.Now
+                    };
+                    user.Id = userRepo.CreateWithIdentity(user);
+
+                    oauthAccountRepo.Create(new OAuthAccount
+                    {
+                        OAuthCode = githubUser.id.ToString(CultureInfo.InvariantCulture),
+                        Source = OAuthSource.Github,
+                        UserId = user.Id,
+                        CreatedTime = DateTime.Now
+                    });
+                }
+                else
+                {
+                    user = commonQuery.GetUser(oauthAccount.UserId);
+                }
+
+                return user;
+            }
         }
     }
 }

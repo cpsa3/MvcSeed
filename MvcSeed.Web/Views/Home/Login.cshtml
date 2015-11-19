@@ -1,7 +1,15 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Login";
 }
+
+<h2>Login</h2>
+
+<form action="@Url.Action("LoginDo")" method="POST" onsubmit="return pwdEncrypt();">
+    <div>用户名:<input type="text" name="UserName" /></div>
+    <div>密码:<input id="password" type="password" name="Password" /></div>
+    <div><input type="submit" value="登陆" /></div>
+    <div><a href="https://github.com/login/oauth/authorize?client_id=b418a0c0efe60e558b64&scope=user,gist&state=mvcseed">Github登陆</a></div>
+</form>
 
 <script type="text/javascript" src="/Scripts/libs/rsa/BigInt.js"></script>
 <script type="text/javascript" src="/Scripts/libs/rsa/RSA.js"></script>
@@ -17,11 +25,3 @@
         return;
     }
 </script>
-
-<h2>Login</h2>
-
-<form action="@Url.Action("LoginDo")" method="POST" onsubmit="return pwdEncrypt();">
-    <div>用户名:<input type="text" name="UserName"/></div>
-    <div>密码:<input id="password" type="password" name="Password"/></div>
-    <div><input type="submit" value="登陆" /></div>
-</form>

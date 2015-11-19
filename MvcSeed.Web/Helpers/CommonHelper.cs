@@ -14,11 +14,23 @@ namespace MvcSeed.Web.Helpers
 {
     public class CommonHelper
     {
+        #region Wechart
+
         public static string WeiXinToken = ConfigurationManager.AppSettings["weixinToken"];
         public static string AppId = ConfigurationManager.AppSettings["appId"];
         public static string AppSecret = ConfigurationManager.AppSettings["appSecret"];
         public static string TemplateId = ConfigurationManager.AppSettings["templateId"];
         public static string TemplateBaseUrl = ConfigurationManager.AppSettings["templateBaseUrl"];
+
+        #endregion
+
+        #region Github
+
+        public static string ClientId = ConfigurationManager.AppSettings["ClientId"];
+        public static string ClientSecret = ConfigurationManager.AppSettings["ClientSecret"];
+
+        #endregion
+
         private static readonly ICache cache = Bootstrapper.Instance.UnityContainer.Resolve<ICache>();
 
 

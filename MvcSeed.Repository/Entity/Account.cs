@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace MvcSeed.Repository.Entity
 {
-    public class User
+    public class Account
     {
         public long Id { get; set; }
-        public string UserName { get; set; }
-        public bool Enable { get; set; }
+        public long UserId { get; set; }
+        public string AccountName { get; set; }
+        public string Password { get; set; }
         public DateTime CreatedTime { get; set; }
     }
 }

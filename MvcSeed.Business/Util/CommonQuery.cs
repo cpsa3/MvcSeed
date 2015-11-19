@@ -17,27 +17,6 @@ namespace MvcSeed.Business.Util
             this.QueryManage = queryManage;
         }
 
-        public Org GetOrgByEname(string ename)
-        {
-            var sqlParams = new Dictionary<string, object>();
-            var query = new StringBuilder();
-
-            query.Append(@"SELECT * 
-                          FROM Org
-                          WHERE ename = @Ename 
-                          limit 1;");
-            sqlParams.Add("@Ename", ename);
-
-            var orgs = QueryManage.GetList<Org>(query.ToString(), sqlParams);
-
-            return orgs.FirstOrDefault();
-        }
-
-        public Org GetOrg(long id)
-        {
-            throw new NotImplementedException();
-        }
-
         public User GetUserByAccount(long orgId, string userName, string userPw)
         {
             string query = @"SELECT *
@@ -51,18 +30,6 @@ namespace MvcSeed.Business.Util
                 OrgId = orgId,
                 UserPw = userPw
             }).FirstOrDefault();
-        }
-
-        public WeixinAccount GetWeixinAccount(string openId)
-        {
-            const string query = @"SELECT 
-                                *
-                            FROM
-                                weixinaccount
-                            WHERE
-                                WeiXinID = @OpenId
-                            ORDER BY Id DESC";
-            return QueryManage.GetList<WeixinAccount>(query, new { OpenId = openId }).FirstOrDefault();
         }
 
         public User GetUserByWeixin(long orgId, string userName, string userPw)
@@ -80,6 +47,32 @@ namespace MvcSeed.Business.Util
                 UserName = userName,
                 UserPw = userPw
             }).FirstOrDefault();
+        }
+
+        public OAuthAccount GetWechartAccount(string openId)
+        {
+            const string query = @"SELECT 
+                                    *
+                                FROM
+                                    oauthaccount
+                                WHERE
+                                    OAuthCode = @OpenId
+                                AND Source = @Source
+                                ORDER BY Id DESC";
+            return QueryManage.GetList<OAuthAccount>(query, new { OAuthCode = openId, Source = OAuthSource.Wechart }).FirstOrDefault();
+        }
+
+        public User GetUser(long userId)
+        {
+            const string query = @"SELECT 
+                                    *
+                                FROM
+                                    user
+                                WHERE
+                                    Id = @UserId
+                                AND Enable = 1
+                                ORDER BY Id DESC";
+            return QueryManage.GetList<User>(query, new { UserId = userId }).FirstOrDefault();
         }
     }
 }

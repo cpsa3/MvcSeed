@@ -72,24 +72,19 @@ namespace MvcSeed.Web.Security
                 var queryManage = new QueryManage(unitOfWork);
                 var commonQuery = new CommonQuery(queryManage);
 
-                var weixinAccount = commonQuery.GetWeixinAccount(openId);
+                var wechartAccount = commonQuery.GetWechartAccount(openId);
 
-                if (weixinAccount == null)
+                if (wechartAccount == null)
                 {
                     return false;
                 }
 
-                var user = commonQuery.GetUserByWeixin(weixinAccount.OrgId, weixinAccount.UserName,
-                    weixinAccount.Password);
+                var user = commonQuery.GetUser(wechartAccount.UserId);
 
                 if (user != null)
                 {
-                    var org = commonQuery.GetOrg(user.OrgId);
-                    if (org != null)
-                    {
-                        CommonHelper.InitializationCurrentUser(user, org);
-                        return true;
-                    }
+                    CommonHelper.InitializationCurrentUser(user);
+                    return true;
                 }
 
                 return false;

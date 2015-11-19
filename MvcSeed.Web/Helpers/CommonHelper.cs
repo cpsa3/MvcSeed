@@ -27,7 +27,7 @@ namespace MvcSeed.Web.Helpers
             return HttpContext.Current.Request.UserAgent != null && HttpContext.Current.Request.UserAgent.Contains("MicroMessenger");
         }
 
-        public static CurrentUser InitializationCurrentUser(User user, Org org)
+        public static CurrentUser InitializationCurrentUser(User user)
         {
             var currentUser = CurrentContext.GetCurrentUser();
 

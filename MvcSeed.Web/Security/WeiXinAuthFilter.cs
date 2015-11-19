@@ -2,6 +2,7 @@
 using MvcSeed.Business.Util;
 using MvcSeed.Component.Data;
 using MvcSeed.Component.WeiXin.Helpers;
+using MvcSeed.Repository.Entity;
 using MvcSeed.Repository.Repo;
 using MvcSeed.Web.Helpers;
 using System.Web.Mvc;
@@ -83,7 +84,7 @@ namespace MvcSeed.Web.Security
 
                 if (user != null)
                 {
-                    CommonHelper.InitializationCurrentUser(user);
+                    CommonHelper.InitializationCurrentUser(user, OAuthSource.Wechart);
                     return true;
                 }
 

@@ -20,6 +20,7 @@ namespace MvcSeed.Repository.Entity
 
     public enum OAuthSource
     {
+        Local = 0,
         Wechart = 1,
         Github = 2,
         Weibo = 3

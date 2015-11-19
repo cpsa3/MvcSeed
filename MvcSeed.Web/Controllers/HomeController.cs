@@ -1,4 +1,5 @@
-﻿using MvcSeed.Web.Models;
+﻿using MvcSeed.Repository.Entity;
+using MvcSeed.Web.Models;
 using MvcSeed.Web.Security;
 using MvcSeed.Component.Helpers;
 using System.Security.Cryptography;
@@ -43,6 +44,7 @@ namespace MvcSeed.Web.Controllers
                 var currentUser = CurrentContext.GetCurrentUser();
                 currentUser.UserId = USERID;
                 currentUser.UserName = USERNAME;
+                currentUser.Source = OAuthSource.Local;
                 CurrentContext.SetUser(currentUser);
 
                 return RedirectToAction("Index");

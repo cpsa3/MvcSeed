@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using MvcSeed.Business.Models;
+using MvcSeed.Repository.Entity;
 
 namespace MvcSeed.Web.Security
 {
@@ -12,6 +13,7 @@ namespace MvcSeed.Web.Security
         public long UserId { get; set; }
         public string UserName { get; set; }
         public string OpenId { get; set; }
+        public OAuthSource Source { get; set; }
     }
 
     /// <summary>

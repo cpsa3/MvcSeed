@@ -41,6 +41,7 @@ namespace MvcSeed.Web.Controllers
                 var currentUser = CurrentContext.GetCurrentUser();
                 currentUser.UserId = user.Id;
                 currentUser.UserName = user.UserName;
+                currentUser.Source = OAuthSource.Github;
                 CurrentContext.SetUser(currentUser);
 
                 return RedirectToAction("Index", "Home");

@@ -39,12 +39,13 @@ namespace MvcSeed.Web.Helpers
             return HttpContext.Current.Request.UserAgent != null && HttpContext.Current.Request.UserAgent.Contains("MicroMessenger");
         }
 
-        public static CurrentUser InitializationCurrentUser(User user)
+        public static CurrentUser InitializationCurrentUser(User user, OAuthSource source)
         {
             var currentUser = CurrentContext.GetCurrentUser();
 
             currentUser.UserId = user.Id;
             currentUser.UserName = user.UserName;
+            currentUser.Source = source;
 
             CurrentContext.SetUser(currentUser);
 

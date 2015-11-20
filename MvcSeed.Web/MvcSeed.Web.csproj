@@ -156,6 +156,10 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\app\modules\login\app.js" />
+    <Content Include="Scripts\libs\mdl\material.css" />
+    <Content Include="Scripts\libs\mdl\material.js" />
+    <Content Include="Scripts\libs\mdl\material.min.css" />
+    <Content Include="Scripts\libs\mdl\material.min.js" />
     <Content Include="Scripts\libs\rsa\Barrett.js" />
     <Content Include="Scripts\libs\rsa\BigInt.js" />
     <Content Include="Scripts\libs\rsa\RSA.js" />
@@ -249,6 +253,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\libs\mdl\bower.json" />
+    <Content Include="Scripts\libs\mdl\LICENSE" />
+    <Content Include="Scripts\libs\mdl\material.min.css.map" />
+    <Content Include="Scripts\libs\mdl\material.min.js.map" />
+    <Content Include="Scripts\libs\mdl\package.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

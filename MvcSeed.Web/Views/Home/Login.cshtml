@@ -5,9 +5,17 @@
 <h2>Login</h2>
 
 <form action="@Url.Action("LoginDo")" method="POST" onsubmit="return pwdEncrypt();">
-    <div>用户名:<input type="text" name="UserName" /></div>
-    <div>密码:<input id="password" type="password" name="Password" /></div>
-    <div><input type="submit" value="登陆" /></div>
+    <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="username" name="UserName">
+        <label class="mdl-textfield__label" for="username">UserName</label>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="password" id="password" name="Password">
+        <label class="mdl-textfield__label" for="password">Password</label>
+    </div>
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        Login
+    </button>
     <div><a href="https://github.com/login/oauth/authorize?client_id=b418a0c0efe60e558b64&scope=user,gist&state=mvcseed">Github登陆</a></div>
 </form>
 

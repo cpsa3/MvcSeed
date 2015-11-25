@@ -34,7 +34,7 @@ namespace MvcSeed.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult LoginDo(LoginDto dto)
+        public JsonResult LoginDo(LoginDto dto)
         {
             var privateKey = DiMySession.Get<string>("PrivateKey");
             var password = HashHelper.RSADecrypt(dto.Password, privateKey);
@@ -47,9 +47,15 @@ namespace MvcSeed.Web.Controllers
                 currentUser.Source = OAuthSource.Local;
                 CurrentContext.SetUser(currentUser);
 
-                return RedirectToAction("Index");
+                return Json(new LoginResult
+                {
+                    State = 1
+                });
             }
-            return RedirectToAction("Login");
+            return Json(new LoginResult
+            {
+                State = 0
+            });
         }
 
         public ActionResult Logout()

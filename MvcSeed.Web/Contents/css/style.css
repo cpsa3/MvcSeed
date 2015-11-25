@@ -1,0 +1,18 @@
+.center {
+    MARGIN-RIGHT: auto;
+    MARGIN-LEFT: auto;
+}
+
+.login-btn {
+    width: 80%;
+    display: block;
+}
+
+.mb-top10 {
+    margin-top: 10px;
+}
+
+.login-txt {
+    width: 80%;
+    display: block;
+}

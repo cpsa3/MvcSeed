@@ -6,7 +6,8 @@
         el: '#vm-login',
         data: {
             username: '',
-            password: ''
+            password: '',
+            pwdRSA: ''
         },
         methods: {
             login: function () {
@@ -14,7 +15,7 @@
 
                 Vue.http.post("/Home/LoginDo", {
                     UserName: this.username,
-                    Password: this.password
+                    Password: this.pwdRSA
                 }, function (result) {
                     if (result.State === 1) {
                         window.location.href = "/Home/Index";
@@ -35,9 +36,7 @@
 
         setMaxDigits(130);
         var key = new RSAKeyPair(keyExponent, "", keyModulus);
-        var pwdRSA = encryptedString(key, vm.password);
-        vm.password = pwdRSA;
-        return;
+        vm.pwdRSA = encryptedString(key, vm.password);
     }
 
 })();

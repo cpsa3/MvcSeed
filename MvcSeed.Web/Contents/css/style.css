@@ -16,3 +16,24 @@
     width: 80%;
     display: block;
 }
+
+.login-btn-box {
+    margin-top: 50px;
+}
+
+.topbar {
+    height: 50px;
+    background: #03A9F4;
+    width: 100%;
+    line-height: 50px;
+    padding-left: 20px;
+}
+
+    .topbar span {
+        font-size: 19px;
+        color: #eee;
+    }
+
+.login-container {
+    margin-top: 85px;
+}

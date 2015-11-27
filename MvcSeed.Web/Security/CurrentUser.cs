@@ -14,6 +14,7 @@ namespace MvcSeed.Web.Security
         public string UserName { get; set; }
         public string OpenId { get; set; }
         public OAuthSource Source { get; set; }
+        public string AvatarUrl { get; set; }
     }
 
     /// <summary>

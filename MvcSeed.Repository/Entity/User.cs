@@ -12,5 +12,6 @@ namespace MvcSeed.Repository.Entity
         public string UserName { get; set; }
         public bool Enable { get; set; }
         public DateTime CreatedTime { get; set; }
+        public string AvatarUrl { get; set; }
     }
 }

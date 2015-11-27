@@ -61,9 +61,18 @@ CREATE TABLE `user` (
   `UserName` varchar(20) NOT NULL,
   `CreatedTime` datetime NOT NULL,
   `Enable` tinyint(4) NOT NULL,
+  `AvatarUrl` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping events for database 'mvcseed'
+--
+
+--
+-- Dumping routines for database 'mvcseed'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -74,4 +83,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-19 21:04:22
+-- Dump completed on 2015-11-27 18:36:06

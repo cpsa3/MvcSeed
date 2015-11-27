@@ -1,8 +1,11 @@
-﻿
+﻿@using MvcSeed.Web.Security
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<a href="@Url.Action("Logout")">Logout</a>
+<div>
+    <div class="topbar"><span>Index</span></div>
+    <div class="avatar-box center"><img src="https://avatars.githubusercontent.com/u/4602172?v=3" /></div>
+    <div class="greetings">Welcome <span>@CurrentContext.GetCurrentUser().UserName</span></div>
+</div>
+<span class="logout-btn"><a href="@Url.Action("Logout")">Logout</a></span>

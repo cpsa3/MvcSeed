@@ -1,7 +1,7 @@
-﻿using MvcSeed.Repository.Entity;
+﻿using MvcSeed.Component.Helpers;
+using MvcSeed.Repository.Entity;
 using MvcSeed.Web.Models;
 using MvcSeed.Web.Security;
-using MvcSeed.Component.Helpers;
 using System.Security.Cryptography;
 using System.Web.Mvc;
 
@@ -16,21 +16,26 @@ namespace MvcSeed.Web.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult GetRSAPublicKey()
+        {
             var rsa = new RSACryptoServiceProvider(1024);
             var privateKey = rsa.ToXmlString(true);
 
             //将私钥存Session中
-            DiMySession["PrivateKey"] = privateKey;
+            this.DiMySession["PrivateKey"] = privateKey;
 
             //把公钥适当转换
             var parameter = rsa.ExportParameters(true);
-            var strPublicKeyExponent = StringHelper.BytesToHexString(parameter.Exponent);
-            var strPublicKeyModulus = StringHelper.BytesToHexString(parameter.Modulus);
 
-            ViewBag.strPublicKeyExponent = strPublicKeyExponent;
-            ViewBag.strPublicKeyModulus = strPublicKeyModulus;
-
-            return View();
+            return Json(new RSAPublicKey
+            {
+                Exponent = StringHelper.BytesToHexString(parameter.Exponent),
+                Modulus = StringHelper.BytesToHexString(parameter.Modulus)
+            });
         }
 
         [HttpPost]
@@ -52,6 +57,7 @@ namespace MvcSeed.Web.Controllers
                     State = 1
                 });
             }
+
             return Json(new LoginResult
             {
                 State = 0

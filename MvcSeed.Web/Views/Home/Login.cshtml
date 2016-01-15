@@ -1,32 +1,23 @@
 ﻿@{
-    ViewBag.Title = "Login";
+    Layout = null;
 }
-
-<div id="vm-login">
-    <div class="topbar"><span class="topbar-lbl">Login</span></div>
-    <div class="login-container">
-        <div class="mdl-textfield mdl-js-textfield login-txt center">
-            <input class="mdl-textfield__input" type="text" id="username" name="UserName" v-model="username">
-            <label class="mdl-textfield__label" for="username">UserName</label>
-        </div>
-        <div class="mdl-textfield mdl-js-textfield login-txt center">
-            <input class="mdl-textfield__input" type="password" id="password" name="Password" v-model="password">
-            <label class="mdl-textfield__label" for="password">Password</label>
-        </div>
-        <div class="login-btn-box">
-            <button v-on="click:login()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent login-btn center">
-                Login
-            </button>
-            <button v-on="click:authorizeGithub()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored login-btn center mb-top10">
-                Github登陆
-            </button>
-        </div>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>MvcSeed</title>
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1" />
+    <link rel="stylesheet" href="/Scripts/libs/mdl/material.min.css">
+    <link rel="stylesheet" href="/Contents/css/style.css">
+    <script src="/Scripts/libs/mdl/material.min.js"></script>
+    <script type="text/javascript" src="/Scripts/libs/underscore-1.7.0/underscore-min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <div id='app'>
+        <component is="{{view}}"></component>
     </div>
-</div>
-<input type="hidden" value="@ViewBag.strPublicKeyExponent" id="keyExponent" />
-<input type="hidden" value="@ViewBag.strPublicKeyModulus" id="keyModulus" />
+    <script src="/scripts/build/build.js"></script>
+</body>
 
-<script type="text/javascript" src="/Scripts/libs/rsa/BigInt.js"></script>
-<script type="text/javascript" src="/Scripts/libs/rsa/RSA.js"></script>
-<script type="text/javascript" src="/Scripts/libs/rsa/Barrett.js"></script>
-<script type="text/javascript" src="/Scripts/app/modules/login/app.js"></script>
+</html>

@@ -142,6 +142,7 @@
     </Compile>
     <Compile Include="Helpers\CommonHelper.cs" />
     <Compile Include="Models\AuthorizeDto.cs" />
+    <Compile Include="Models\RSAPublicKey.cs" />
     <Compile Include="Models\LoginResult.cs" />
     <Compile Include="Models\LoginDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -157,6 +158,7 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Contents\css\style.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\app\main.js" />
     <Content Include="Scripts\app\modules\login\app.js" />
     <Content Include="Scripts\libs\mdl\material.css" />
     <Content Include="Scripts\libs\mdl\material.js" />
@@ -169,6 +171,7 @@
     <Content Include="Scripts\libs\underscore-1.7.0\underscore.js" />
     <Content Include="Scripts\libs\vue\vue-resource.min.js" />
     <Content Include="Scripts\libs\vue\vue.js" />
+    <Content Include="Scripts\webpack.config.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -263,6 +266,9 @@
     <Content Include="Scripts\libs\mdl\material.min.css.map" />
     <Content Include="Scripts\libs\mdl\material.min.js.map" />
     <Content Include="Scripts\libs\mdl\package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\package.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

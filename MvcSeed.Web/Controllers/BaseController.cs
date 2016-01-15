@@ -33,5 +33,5 @@ namespace MvcSeed.Web.Controllers
         {
             CurrentUser = CurrentContext.GetCurrentUser();
         }
-	}
+    }
 }

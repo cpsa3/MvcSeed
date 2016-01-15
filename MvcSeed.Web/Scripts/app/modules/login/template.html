@@ -1,0 +1,28 @@
+<div id="vm-login" class="view" v-transition>
+    <div class="topbar"><span class="topbar-lbl">Login</span></div>
+    <div class="login-container">
+        <div class="mdl-textfield mdl-js-textfield login-txt center">
+            <input class="mdl-textfield__input" type="text" id="username" name="UserName" v-model="username">
+            <label class="mdl-textfield__label" for="username">UserName</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield login-txt center">
+            <input class="mdl-textfield__input" type="password" id="password" name="Password" v-model="password">
+            <label class="mdl-textfield__label" for="password">Password</label>
+        </div>
+        <div class="login-btn-box">
+            <button v-on="click:login()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent login-btn center">
+                Login
+            </button>
+            <button v-on="click:authorizeGithub()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored login-btn center mb-top10">
+                Github登陆
+            </button>
+        </div>
+    </div>
+</div>
+<input type="hidden" value="" id="keyExponent" />
+<input type="hidden" value="" id="keyModulus" />
+
+<script type="text/javascript" src="/Scripts/libs/rsa/BigInt.js"></script>
+<script type="text/javascript" src="/Scripts/libs/rsa/RSA.js"></script>
+<script type="text/javascript" src="/Scripts/libs/rsa/Barrett.js"></script>
+<script type="text/javascript" src="/Scripts/app/modules/login/app.js"></script>

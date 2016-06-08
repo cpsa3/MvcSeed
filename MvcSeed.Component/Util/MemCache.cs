@@ -5,15 +5,17 @@ namespace MvcSeed.Component.Util
 {
     public class MemCache : ICache
     {
-        private readonly MemcachedClient mc = new MemcachedClient();
-        private readonly string preFix = string.Empty;
+        private SockIOPool pool;
+
+        MemcachedClient mc = new MemcachedClient();
+        private string preFix = string.Empty;
 
         public MemCache(string[] strServer, string pre)
         {
             preFix = pre;
             try
             {
-                SockIOPool pool = SockIOPool.GetInstance();
+                pool = SockIOPool.GetInstance();
                 pool.SetServers(strServer);
 
                 //初始化连接数
@@ -36,7 +38,7 @@ namespace MvcSeed.Component.Util
             catch (Exception ex)
             {
                 //TODO 记录日志
-                throw;
+                throw ex;
             }
         }
 
@@ -99,24 +101,39 @@ namespace MvcSeed.Component.Util
             }
         }
 
-        public T Get<T>(string key, Func<T> acquire, DateTime expiry)
+        public T Get<T>(string key, Func<T> acquire, DateTime expiry, bool isRefreshForce = false, bool isNoPreFix = false)
         {
-            key = preFix + key;
-            if (mc.KeyExists(key))
-            {
-                return _Get<T>(key);
-            }
-            else
+            key = isNoPreFix ? key : preFix + key;
+
+            if (isRefreshForce)
             {
                 T result = acquire();
                 _Set(key, result, expiry);
                 return result;
+            }
+            else
+            {
+                if (mc.KeyExists(key))
+                {
+                    return _Get<T>(key);
+                }
+                else
+                {
+                    T result = acquire();
+                    _Set(key, result, expiry);
+                    return result;
+                }
             }
         }
 
         public T Get<T>(string key)
         {
             key = preFix + key;
+            return _Get<T>(key);
+        }
+
+        public T GetNoPrefix<T>(string key)
+        {
             return _Get<T>(key);
         }
 
@@ -135,7 +152,6 @@ namespace MvcSeed.Component.Util
         }
 
         #region 私有 不对 key处理的函数
-
         private T _Get<T>(string key)
         {
             T result = default(T);
@@ -172,7 +188,6 @@ namespace MvcSeed.Component.Util
                 mc.Set(key, value, date);
             }
         }
-
         #endregion
     }
 }

@@ -18,5 +18,11 @@ namespace MvcSeed.Component.Helpers
             var log = LogManager.GetLogger(LOG_NAME);
             log.Error(msg, ex);
         }
+
+        public static void Error(Exception ex)
+        {
+            var log = LogManager.GetLogger(LOG_NAME);
+            log.Error(ex);
+        }
     }
 }

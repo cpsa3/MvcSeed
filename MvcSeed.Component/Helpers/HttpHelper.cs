@@ -16,14 +16,14 @@ namespace MvcSeed.Component.Helpers
             return Task.Run(() => GetAsync<T>(url, userAgent)).Result;
         }
 
-        public static T Post<T>(string url, string jsonString, string contentType = "Application/Json", Dictionary<string, string> headers = null)
+        public static T Post<T>(string url, string jsonString, string contentType = "Application/Json", Dictionary<string, string> headers = null, double timeoutSec = 30)
         {
-            return Task.Run(() => PostAsync<T>(url, jsonString, contentType, headers)).Result;
+            return Task.Run(() => PostAsync<T>(url, jsonString, contentType, headers, timeoutSec)).Result;
         }
 
-        public static TResult Post<TResult, TSource>(string url, TSource TEntity, string contentType = "Application/Json", Dictionary<string, string> headers = null)
+        public static TResult Post<TResult, TSource>(string url, TSource TEntity, string contentType = "Application/Json", Dictionary<string, string> headers = null, double timeoutSec = 30)
         {
-            return Task.Run(() => PostAsync<TResult, TSource>(url, TEntity, contentType, headers)).Result;
+            return Task.Run(() => PostAsync<TResult, TSource>(url, TEntity, contentType, headers, timeoutSec)).Result;
         }
 
         #endregion
@@ -44,10 +44,11 @@ namespace MvcSeed.Component.Helpers
             return result;
         }
 
-        public static async Task<T> PostAsync<T>(string url, string jsonString, string contentType = "Application/Json", Dictionary<string, string> headers = null)
+        public static async Task<T> PostAsync<T>(string url, string jsonString, string contentType = "Application/Json", Dictionary<string, string> headers = null, double timeoutSec = 30)
         {
             var httpClient = new HttpClient();
 
+            httpClient.Timeout = TimeSpan.FromSeconds(timeoutSec);
             var content = new StringContent(jsonString, Encoding.UTF8);
             content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
 
@@ -64,10 +65,10 @@ namespace MvcSeed.Component.Helpers
             return result;
         }
 
-        public static async Task<TResult> PostAsync<TResult, TSource>(string url, TSource TEntity, string contentType = "Application/Json", Dictionary<string, string> headers = null)
+        public static async Task<TResult> PostAsync<TResult, TSource>(string url, TSource TEntity, string contentType = "Application/Json", Dictionary<string, string> headers = null, double timeoutSec = 30)
         {
             var jsonString = JsonHelper.JsonSerializer(TEntity);
-            return await PostAsync<TResult>(url, jsonString, contentType, headers);
+            return await PostAsync<TResult>(url, jsonString, contentType, headers, timeoutSec);
         }
 
         #endregion

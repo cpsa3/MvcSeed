@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
-
-namespace MvcSeed.Component.Util
+﻿namespace MvcSeed.Component.Util
 {
+    using System;
+    using System.Web;
+
     public class AppCache : ICache
     {
         /// <summary>
@@ -36,12 +33,17 @@ namespace MvcSeed.Component.Util
             return (T)cache.Get(key);
         }
 
+        public T GetNoPrefix<T>(string key)
+        {
+            throw new NotImplementedException();
+        }
+
         public T Get<T>(string key, Func<T> acquire)
         {
             throw new NotImplementedException();
         }
 
-        public T Get<T>(string key, Func<T> acquire, DateTime expiry)
+        public T Get<T>(string key, Func<T> acquire, DateTime expiry, bool isRefreshForce = false, bool isNoPreFix = false)
         {
             throw new NotImplementedException();
         }
@@ -55,7 +57,6 @@ namespace MvcSeed.Component.Util
             var cache = HttpRuntime.Cache;
             cache.Remove(key);
         }
-
 
         /// <summary>
         /// 添加cache(默认过期30分钟)
@@ -77,5 +78,6 @@ namespace MvcSeed.Component.Util
         {
             throw new NotImplementedException();
         }
+
     }
 }

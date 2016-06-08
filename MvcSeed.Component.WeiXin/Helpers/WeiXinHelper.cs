@@ -7,6 +7,13 @@ using System.Collections.Generic;
 
 namespace MvcSeed.Component.WeiXin.Helpers
 {
+    using System;
+
+    using MvcSeed.Component.Helpers;
+    using MvcSeed.Component.Util;
+
+    using Senparc.Weixin.MP.Entities;
+
     public class WeiXinHelper
     {
         public static OAuthAccessToken GetOAuthAccessToken(string appid, string secret, string code, string grant_type = "authorization_code")
@@ -72,11 +79,39 @@ namespace MvcSeed.Component.WeiXin.Helpers
             return user;
         }
 
+        public static CustomWxJsonResult<WeixinUserResult> GetWeixinUserHasRetry(string appId, string appSecret, ICache cache, string openid)
+        {
+            try
+            {
+                return WeiXinUtility.Do(accessToken =>
+                {
+                    var url = string.Format("https://api.weixin.qq.com/cgi-bin/user/info?access_token={0}&openid={1}", accessToken, openid);
+
+                    var user = Get.GetJson<WeixinUserResult>(url);
+
+                    var result = new CustomWxJsonResult<WeixinUserResult> { Data = user };
+                    return result;
+                }, appId, appSecret, cache);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error("GetWeixinUserHasRetry error：" + ex.ToString());
+                throw;
+            }
+        }
+
         public static List<WeixinUserResult> GetFollowers(string accessToken)
         {
             var openids = GetFollowersIds(accessToken);
+            var users = new List<WeixinUserResult>();
 
-            return openids.Select(openid => GetWeixinUser(accessToken, openid)).ToList();
+            foreach (var openid in openids)
+            {
+                var user = GetWeixinUser(accessToken, openid);
+                users.Add(user);
+            }
+
+            return users;
         }
 
         public static SendTemplateMessageResult SendTemplateMessage(string accessToken, string openId, string templateId, string url, object data)
@@ -103,6 +138,89 @@ namespace MvcSeed.Component.WeiXin.Helpers
                 };
             }
         }
+
+        public static SendTemplateMessageResult SendTemplateMessageHasRetry(string appId, string appSecret, ICache cache, string openId, string templateId, string url, object data)
+        {
+            try
+            {
+                return WeiXinUtility.Do(accessToken =>
+                {
+                    const string urlFormat = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={0}";
+                    var msgData = new TempleteModel
+                    {
+                        touser = openId,
+                        template_id = templateId,
+                        url = url,
+                        data = data
+                    };
+                    return CommonJsonSend.Send<SendTemplateMessageResult>(accessToken, urlFormat, msgData);
+                }, appId, appSecret, cache);
+            }
+            catch (ErrorJsonResultException ex)
+            {
+                return new SendTemplateMessageResult
+                {
+                    errcode = ex.JsonResult.errcode,
+                    errmsg = ex.JsonResult.errmsg,
+                    P2PData = ex.JsonResult.P2PData
+                };
+            }
+        }
+
+        #region QrCode
+
+        /// <summary>
+        /// 创建二维码
+        /// </summary>
+        /// <param name="accessToken">accessToken</param>
+        /// <param name="expireSeconds">该二维码有效时间，以秒为单位。 最大不超过1800。0时为永久二维码</param>
+        /// <param name="sceneId">场景值ID，临时二维码时为32位整型，永久二维码时最大值为1000</param>
+        /// <returns></returns>
+        public static CreateQrCodeResult CreateQrTicket(string accessToken, int expireSeconds, int sceneId)
+        {
+            return QrCode.Create(accessToken, expireSeconds, sceneId);
+        }
+
+        /// <summary>
+        /// 获取下载二维码的地址
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <returns></returns>
+        public static string GetShowQrCodeUrl(string ticket)
+        {
+            return QrCode.GetShowQrCodeUrl(ticket);
+        }
+
+        /// <summary>
+        /// 用字符串类型创建二维码
+        /// </summary>
+        /// <param name="accessToken"></param>
+        /// <param name="sceneStr">场景值ID（字符串形式的ID），字符串类型，长度限制为1到64，仅永久二维码支持此字段</param>
+        /// <returns></returns>
+        public static CreateQrCodeResult CreateQrTicketByStr(string accessToken, string sceneStr)
+        {
+            var urlFormat = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token={0}";
+            var data = new
+            {
+                action_name = "QR_LIMIT_STR_SCENE",
+                action_info = new
+                {
+                    scene = new
+                    {
+                        scene_str = sceneStr
+                    }
+                }
+            };
+            return CommonJsonSend.Send<CreateQrCodeResult>(accessToken, urlFormat, data);
+        }
+
+        #endregion
+
+    }
+
+    public class CustomWxJsonResult<T> : WxJsonResult
+    {
+        public T Data { get; set; }
     }
 
     /// <summary>

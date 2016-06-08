@@ -39,6 +39,9 @@
     <Reference Include="Commons">
       <HintPath>..\packages\Memcached.ClientLibrary.1.0\lib\net20\Commons.dll</HintPath>
     </Reference>
+    <Reference Include="Enyim.Caching">
+      <HintPath>..\packages\Enyim.Caching\Enyim.Caching.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\Memcached.ClientLibrary.1.0\lib\net20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -49,6 +52,7 @@
       <HintPath>..\packages\Memcached.ClientLibrary.1.0\lib\net20\Memcached.ClientLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
@@ -74,6 +78,8 @@
     <Compile Include="Util\ISession.cs" />
     <Compile Include="Util\MemCache.cs" />
     <Compile Include="Util\MemSession.cs" />
+    <Compile Include="Util\OCSCache.cs" />
+    <Compile Include="Util\StringExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

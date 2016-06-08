@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Web;
-using MvcSeed.Web.Security;
-using MvcSeed.Business.Util;
-using MvcSeed.Component.Util;
-using Microsoft.Practices.Unity;
-using MvcSeed.Component.WeiXin.Helpers;
-using MvcSeed.Repository.Entity;
-
-namespace MvcSeed.Web.Helpers
+﻿namespace MvcSeed.Web.Helpers
 {
+    using System.Configuration;
+    using System.Web;
+
+    using Microsoft.Practices.Unity;
+
+    using MvcSeed.Business.Util;
+    using MvcSeed.Component.Util;
+    using MvcSeed.Component.WeiXin.Helpers;
+    using MvcSeed.Repository.Entity;
+    using MvcSeed.Web.Security;
+
     public class CommonHelper
     {
         #region Wechart
